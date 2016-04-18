@@ -177,8 +177,7 @@ class TicketController extends Controller
     public function printTicket(Request $request){
         $ticket = Ticket::find($request->unique_code);
 
-        return $ticket->generatePDF()->stream();
-
+        return $ticket->generatePDFOnline()->stream();
         // $tickets = Ticket::paginate(10);
         // foreach($tickets as $ticket){
         //     echo $ticket->generatePDF()->stream();

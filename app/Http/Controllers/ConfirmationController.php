@@ -200,9 +200,9 @@ class ConfirmationController extends Controller
 
      //sent ticket to customer by email
      Mail::send('emails.ticket-send', ['confirmation' => $confirmation], function($m) use ($confirmation){
-         $m->from('admin@parahyanganfair.com', 'Parahyangan Fair 2016');
+         $m->from('no-reply@fivelivemagnificent.com', 'Five Live Magnificent 2016');
          $m->to($confirmation->order->email, $confirmation->order->name);
-         $m->subject('Ticket Parahyangan Fair 2016');
+         $m->subject('Ticket Five Live Magnificent');
 
          foreach($confirmation->order->tickets as $ticket){
              $pdf = $ticket->generatePDFOnline();
@@ -217,9 +217,9 @@ class ConfirmationController extends Controller
    public function resendMail(Request $request){
      $confirmation = Confirmation::where(['id' => $request->id])->first();
      Mail::send('emails.ticket-send', ['confirmation' => $confirmation], function($m) use ($confirmation){
-         $m->from('admin@parahyanganfair.com', 'Parahyangan Fair 2016');
+         $m->from('no-reply@fivelivemagnificent.com', 'Five Live Magnificent 2016');
          $m->to($confirmation->order->email, $confirmation->order->name);
-         $m->subject('Ticket Parahyangan Fair 2016');
+         $m->subject('Ticket Five Live Magnificent');
 
          foreach($confirmation->order->tickets as $ticket){
              $pdf = $ticket->generatePDFOnline();
