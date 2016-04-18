@@ -1,0 +1,102 @@
+
+body {
+  /*background: url('../images/background.jpg')no-repeat center center fixed;*/
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+
+  font-family: 'Neoteric';
+  color:white;
+
+ }
+
+ div{
+display:block;
+ }
+
+
+ a{
+ color:black;
+}
+
+
+ @font-face {
+    font-family: DevilBreeze;
+    src: url(../fonts/dev-breeze.ttf);
+
+}
+
+@font-face {
+    font-family: Avenir;
+    src: url(../fonts/avenir.otf);
+}
+
+@font-face {
+    font-family: Neoteric;
+    src: url(../fonts/neoteric.ttf);
+}
+
+option{
+font-family:Avenir;}
+
+#first{font-family:Avenir;
+}
+
+#fifth{font-family:Neoteric; font-size:16px;
+}
+
+#fourth{font-family:Avenir}
+
+#third{font-family:Neoteric;font-size:18px;}
+
+#second{
+box-shadow: 1px 1px 25px #ffffff;
+}
+
+h5{
+font-family:Avenir;}
+
+h2{
+font-family:Avenir;}
+
+select{
+font-family:Avenir;}
+
+input{
+font-family:Avenir;}
+
+h3{
+font-family:DevilBreeze;}
+
+ .btn-custom{
+ width:240px;
+ margin:0px auto;
+ }
+
+ absolutecenter {
+  margin: auto;
+  position: absolute;
+  top: 0; left: 0; bottom: 0; right: 0;
+ }
+
+responsiveabsolutecenter {
+  width: 50%;
+  height: 50%;
+  min-width: 200px;
+  max-width: 400px;
+  padding: 40px;
+  width: 274px;
+  background-color: #F7F7F7;
+  margin: 0 auto 10px;
+  border-radius: 2px;
+  box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+}
+
+ .frontpage {
+ /*background: url('../images/background_home.jpg')no-repeat center center fixed;*/
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  }
