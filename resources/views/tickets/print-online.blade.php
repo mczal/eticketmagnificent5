@@ -27,3 +27,5 @@ body {
 <span style="position: absolute; right: 10px; top: 1060px; font-size:12.5px; ">{{ $ticket->type ? $ticket->type->name : '' }}</span>
 <span style="position: absolute; right: 10px; top: 1078px; font-size:12.5px; ">{{ $ticket->unique_code }}</span>
 <span style="position: absolute; right: 10px; top: 1094px; font-size:12.5px; ">{{ $ticket->type ? 'Rp.'.number_format($ticket->type->price) : '' }}</span>
+
+<span style="position: absolute; left: 335px; top: 1094px; font-size:12.5px; ">Powered by: <a href="http://www.eticket123.com/">eticket123.com</a></span>
