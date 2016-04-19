@@ -67,10 +67,9 @@ background-size: cover;")
 							<option value="2" style="color:black;">2</option>
 							<option value="3" style="color:black;">3</option>
 							<option value="4" style="color:black;">4</option>
-						</select>
-						<label for="tiket sisa" class="col-sm-8" style="padding-bottom: 20px; padding-top: 10px;">Number of tickets remaining: &nbsp; &nbsp; <span style="font-weight:normal;">{{$remainingTicketsFest}}</span> </label><hr width="80%">
+						</select><br>
 
-			      <label class="col-sm-12 control-label">VIP B &nbsp; &nbsp; <span style="font-weight:normal;">@Rp.{{number_format($priceVipB)}}</span></label>
+			      <label style="padding-top:10px;" class="col-sm-12 control-label">VIP B &nbsp; &nbsp; <span style="font-weight:normal;">@Rp.{{number_format($priceVipB)}}</span></label>
 			      @if ($errors->has('ctvipb3'))
 			          <span class="help-block">
 			              <strong>{{ $errors->first('ctvipb3') }}</strong>
@@ -82,10 +81,9 @@ background-size: cover;")
 							<option value="2" style="color:black;">2</option>
 							<option value="3" style="color:black;">3</option>
 							<option value="4" style="color:black;">4</option>
-						</select>
-						<label for="tiket sisa" class="col-sm-8" style="padding-bottom: 20px; padding-top: 10px;">Number of tickets remaining: &nbsp; &nbsp; <span style="font-weight:normal;">{{$remainingTicketsVipB}}</span> </label><hr width="80%">
+						</select><br>
 
-						<label class="col-sm-12 control-label">VIP A &nbsp; &nbsp; <span style="font-weight:normal;">@Rp.{{number_format($priceVipA)}}</span></label>
+						<label style="padding-top:10px;" class="col-sm-12 control-label">VIP A &nbsp; &nbsp; <span style="font-weight:normal;">@Rp.{{number_format($priceVipA)}}</span></label>
 			      @if ($errors->has('ctvipa2'))
 			          <span class="help-block">
 			              <strong>{{ $errors->first('ctvipa2') }}</strong>
@@ -97,23 +95,15 @@ background-size: cover;")
 							<option value="2" style="color:black;">2</option>
 							<option value="3" style="color:black;">3</option>
 							<option value="4" style="color:black;">4</option>
-						</select>
-						<label for="tiket sisa" class="col-sm-8" style="padding-bottom: 20px; padding-top: 10px;">Number of tickets remaining: &nbsp; &nbsp; <span style="font-weight:normal;">{{$remainingTicketsVipA}}</span> </label><hr width="80%">
+						</select><br>
 
-						<label class="col-sm-12 control-label">VVIP &nbsp; &nbsp; <span style="font-weight:normal;">@Rp.{{number_format($priceVvip)}}</span></label>
+						<label style="padding-top:10px;" class="col-sm-12 control-label">VVIP &nbsp; &nbsp; <span style="font-weight:normal;"><i>-SOLD OUT-</i></span></label>
 			      @if ($errors->has('ctvvip4'))
 			          <span class="help-block">
 			              <strong>{{ $errors->first('ctvvip4') }}</strong>
 			          </span>
 			      @endif
-			      <select style="color:black;" type="number" name="ctvvip4" id="order-ctvvip4" class="col-sm-4 form-control">
-							<option value="0" style="color:black;">0</option>
-							<option value="1" style="color:black;">1</option>
-							<option value="2" style="color:black;">2</option>
-							<option value="3" style="color:black;">3</option>
-							<option value="4" style="color:black;">4</option>
-						</select>
-						<label for="tiket sisa" class="col-sm-8" style="padding-bottom: 20px; padding-top: 10px;">Number of tickets remaining: &nbsp; &nbsp; <span style="font-weight:normal;">{{$remainingTicketsVvip}}</span> </label>
+						<input type="hidden" name="ctvvip4" value="0">
 			    </div>
 			</div>
 

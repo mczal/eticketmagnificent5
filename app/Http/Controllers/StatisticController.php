@@ -28,7 +28,7 @@ class StatisticController extends Controller
 
     public function index(){
       $types = $this->types->getAllActive();
-      return view('statistic.index',[
+      return view('statistics.index',[
         'types' => $types,
       ]);
     }
@@ -36,11 +36,11 @@ class StatisticController extends Controller
     public function show($id){
       $type = $this->types->findById($id);
       $remaining = $this->tickets->countTicketsRemaining($id);
-      $total = count($types->tickets);
+      $total = count($type->tickets);
       $ordered = $this->tickets->countTicketOrdered($id);
       $actived = $this->tickets->countTicketActived($id);
       $checkedIn = $this->tickets->countTicketCheckedIn($id);
-      return view('statistic.show',[
+      return view('statistics.show',[
         'type' => $type,
         'remaining' => $remaining,
         'total' => $total,

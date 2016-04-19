@@ -25,9 +25,9 @@ class Ticket extends Model
     /**
      * Generate hashed barcode name
      */
-    public function generateBarcode(){
-        return $this->unique_code . '-' . md5($this->unique_code . '-' . $this->id);
-    }
+    // public function generateBarcode(){
+    //     return $this->unique_code . '-' . md5($this->unique_code . '-' . $this->id);
+    // }
 
     /**
      * Generate hashed barcode name
@@ -42,9 +42,10 @@ class Ticket extends Model
         return $pdf;
     }
 
-    public function generatePDFOnline(){
+    public function generatePDFOnline($barcode){
       $pdf = PDF::loadView('tickets.print-online', [
           'ticket' => $this,
+          'barcode' => $barcode,
       ])->setPaper([0, 0, 605, 850], 'portrait');
       return $pdf;
     }

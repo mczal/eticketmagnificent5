@@ -57,6 +57,7 @@ class TicketController extends Controller{
             'status' => 402,
             'message' => 'ticket hasn\'t been activated',
             'data' => $order,
+            'ticket' => $ticket,
           ]);
         }else{
           if($ticket->check_in_date == null || $ticket->check_in_date == ''){
@@ -68,6 +69,7 @@ class TicketController extends Controller{
               'status' => 200,
               'message' => 'ticket has been activated',
               'data' => $order,
+              'ticket' => $ticket,
             ]);
           }else{
             return response()->json([
@@ -75,6 +77,7 @@ class TicketController extends Controller{
               'status' => 403,
               'message' => 'someone has already using your ticket',
               'data' => $order,
+              'ticket' => $ticket,
             ]);
           }
         }

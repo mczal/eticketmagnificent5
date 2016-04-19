@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use DNS1D;
 use Mail;
 use PDF;
 use App\Http\Requests;
@@ -205,7 +206,8 @@ class ConfirmationController extends Controller
          $m->subject('Ticket Five Live Magnificent');
 
          foreach($confirmation->order->tickets as $ticket){
-             $pdf = $ticket->generatePDFOnline();
+             $barcode =  "data:image/png;base64,".DNS1D::getBarcodePNG($ticket->unique_code, "C128");
+             $pdf = $ticket->generatePDFOnline($barcode);
              $m->attachData($pdf->output(), $ticket->unique_code.'.pdf');
          }
      });
@@ -222,7 +224,8 @@ class ConfirmationController extends Controller
          $m->subject('Ticket Five Live Magnificent');
 
          foreach($confirmation->order->tickets as $ticket){
-             $pdf = $ticket->generatePDFOnline();
+             $barcode =  "data:image/png;base64,".DNS1D::getBarcodePNG($ticket->unique_code, "C128");
+             $pdf = $ticket->generatePDFOnline($barcode);
              $m->attachData($pdf->output(), $ticket->unique_code.'.pdf');
          }
      });

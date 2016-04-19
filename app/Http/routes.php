@@ -73,6 +73,8 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('confirmation', 'FrontendController@confirmation');
     Route::post('confirmation', 'FrontendController@confirmationStore');
 
+    Route::resource('statistics','StatisticController');
+
     //API Android
     Route::get('tickets/get-data/{code}','Api\TicketController@getTicketData');
     Route::post('tickets/check-in','Api\TicketController@checkIn');

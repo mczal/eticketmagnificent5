@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use PDF;
 use QrCode;
 use Mail;
+use DNS1D;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Ticket;
@@ -84,7 +85,7 @@ class TicketController extends Controller
             $ticket->type_id = $ticketType;
             $ticket->order_id = 'null';
             $ticket->save();
-            QrCode::format('png')->size(400)->generate($ticket->unique_code, '../public/qrcodes/'.$ticket->generateBarcode().'.png');
+            // QrCode::format('png')->size(400)->generate($ticket->unique_code, '../public/qrcodes/'.$ticket->generateBarcode().'.png');
         }
 
         return redirect('/tickets')->with('success_message', '<b>'.$amount.'</b> tickets was created.');
@@ -176,8 +177,10 @@ class TicketController extends Controller
      */
     public function printTicket(Request $request){
         $ticket = Ticket::find($request->unique_code);
-
-        return $ticket->generatePDFOnline()->stream();
+        $barcode =  DNS1D::getBarcodePNG($ticket->unique_code, "C128");
+        $barcode = "data:image/png;base64,".$barcode;
+        // dd($barcode);
+        return $ticket->generatePDFOnline($barcode)->stream();
         // $tickets = Ticket::paginate(10);
         // foreach($tickets as $ticket){
         //     echo $ticket->generatePDF()->stream();

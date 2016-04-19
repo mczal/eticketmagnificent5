@@ -35,7 +35,7 @@ class OrderController extends Controller
     * Cancel every order which expire and detach their tickets
     */
     public function cancel(){
-      //dd("1");
+      dd("1");
         //TODO: find more effisien query technique
         $orders = $this->orders->getAllExpire();
         //dd($orders);

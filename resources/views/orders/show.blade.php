@@ -148,7 +148,7 @@
                                 <tr>
                                     <th width="10px">No.</th>
                                     <th width="200px">Code</th>
-                                    <th width="300px">Signature</th>
+                                    <th width="200px">Type</th>
                                     <th></th>
                                 </tr>
                             </thead>
@@ -158,9 +158,9 @@
                                     <tr>
                                         <td>{{ $i++ }}</td>
                                         <td>{{ $ticket->unique_code }}</td>
-                                        <td>{{ strtoupper($ticket->generateBarcode()) }}</td>
+                                        <td>{{ $ticket->type->name }}</td>
                                         <td>
-                                            <a href="{{ url('/tickets/print/' . $ticket->id) }}" target="_blank"><span class="fa fa-print"></span></a>
+                                            <a href="{{ url('/tickets/print/' . $ticket->id) }}" target="_blank"><span class="btn btn-primary fa fa-print"></span></a>
                                         </td>
                                     </tr>
                                 @endforeach
