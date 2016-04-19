@@ -9,7 +9,7 @@
       <meta http-equiv="X-UA-Compatible" content="IE=edge">
       <meta name="viewport" content="width=device-width, initial-scale=1">
 
-      <title>PARAHYANGAN FAIR 2016</title>
+      <title>Five Live Magnificent 2016</title>
       <!-- favicon -->
       <link rel="shortcut icon" type="image/x-icon" href="{{ asset('/favicon.ico') }}" />
         <!-- Bootstrap -->
@@ -35,7 +35,6 @@
               </section><!-- /.content -->
           </div><!-- /.content-wrapper -->
        </div>
-       <h5 align='center'><a href="http://instagram.com/parahyanganfair">@PARAHYANGANFAIR</a></h5>
 
 
     <!-- REQUIRED JS SCRIPTS -->

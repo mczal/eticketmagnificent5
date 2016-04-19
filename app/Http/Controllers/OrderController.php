@@ -213,6 +213,12 @@ class OrderController extends Controller
         $order->total_price = $sumPrice;
         $order->quantity = $quantity;
         $order->save();
+        $tickets = $order->tickets;
+        Mail::send('emails.order', ['order' => $order , 'tickets' => $tickets], function($m) use ($order){
+            $m->from('no-reply@fivelivemagnificent.com', 'Five Live Magnificent 2016');
+            $m->to($order->email, $order->name);
+            $m->subject('Order Five Live Magnificent');
+        });
 
         return redirect('/orders')->with('success_message', 'Order #<b>' . $order->no_order . '</b> was created.');
     }
@@ -300,9 +306,7 @@ class OrderController extends Controller
     public function resendMailOnlineOrder(Request $request){
       $order = $this->orders->findById($request->id);
       // dd($order);
-      // $atPrice = $order->type->price;
       $tickets = $order->tickets;
-      //dd($atPrice);
       Mail::send('emails.order', ['order' => $order , 'tickets' => $tickets], function($m) use ($order){
           $m->from('no-reply@fivelivemagnificent.com', 'Five Live Magnificent 2016');
           $m->to($order->email, $order->name);

@@ -6,7 +6,7 @@ body {
   -o-background-size: cover;
   background-size: cover;
 
-  font-family: 'Neoteric';
+  font-family: 'Copperplate / Copperplate Gothic Light, sans-serif';
   color:white;
 
  }
@@ -38,36 +38,38 @@ display:block;
 }
 
 option{
-font-family:Avenir;}
+font-family:Helvetica;}
 
-#first{font-family:Avenir;
+#first{font-family:Helvetica;
 }
 
-#fifth{font-family:Neoteric; font-size:16px;
+#fifth{font-family:Helvetica; font-size:16px;
 }
 
-#fourth{font-family:Avenir}
+#fourth{font-family:Helvetica}
 
-#third{font-family:Neoteric;font-size:18px;}
+#third{font-family:Helvetica;font-size:18px;}
 
 #second{
 box-shadow: 1px 1px 25px #ffffff;
 }
 
 h5{
-font-family:Avenir;}
+font-family:Helvetica;}
 
 h2{
-font-family:Avenir;}
+font-family:Helvetica;}
 
 select{
-font-family:Avenir;}
+font-family:Helvetica;}
 
 input{
-font-family:Avenir;}
+font-family:Helvetica;
+color:black;
+}
 
 h3{
-font-family:DevilBreeze;}
+font-family:Helvetica;}
 
  .btn-custom{
  width:240px;
@@ -99,4 +101,10 @@ responsiveabsolutecenter {
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
+  }
+
+  .img-line-up{
+    text-align: center;
+    z-index: 10;
+    padding-top: 60px;
   }

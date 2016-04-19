@@ -54,55 +54,114 @@ class FrontendController extends Controller
 
     public function buyStore(Request $request){
 
-        $this->validate($request, [
-            'type_id' => 'required|integer',
-            'name' => 'required',
-            'email' => 'required|unique:orders|email',
-            'id_no' => 'required',
-            'quantity' => 'required|integer|min:1|max:3',
-            'handphone' => 'required',
-        ]);
-        //find type
-        $type = $this->types->findById($request->type_id);
-        $remaining_tickets = $this->tickets->countTicketsRemaining($type->id);
+      $this->validate($request, [
+          'ctfest1' => 'required|integer|min:0|max:4',
+          'ctvipa2' => 'required|integer|min:0|max:4',
+          'ctvipb3' => 'required|integer|min:0|max:4',
+          'ctvvip4' => 'required|integer|min:0|max:4',
+          'name' => 'required',
+          'email' => 'required|unique:orders|email',
+          'handphone' => 'required',
+      ]);
 
-        if($remaining_tickets < $request->quantity){
-            return redirect('/buy')->with('error_message', 'Number of tickets remaining: <span id="first">' . $remaining_tickets . '</span>');
-        }
+      $sumAll = (1*$request->ctfest1) + (1*$request->ctvipa2) + (1*$request->ctvipb3) + (1*$request->ctvvip4);
+      //dd($sumAll.' '.$request->ctfest1);
+      if($sumAll <= 0 ){
+        return redirect('/orders/create')->with('error_message','Tidak ada tiket yang ingin dipesan');
+      }
 
-        //save order
-        $order = new Order;
-        $order->fill($request->all());
-        $order->type_id = env('ACTIVE_TICKET_TYPE');
-        $order->no_order = $this->orders->generateNoOrder();
-        $order->expired_date = date('Y-m-d H:i:s', time() + (3600 * 10)); //10 hours
-        $order->status = 1;
-        $order->total_price = ($type->price * $order->quantity) + rand(1, 999);
-        $order->save();
+      //this is validate count ticket left section with countordered
+      if($this->tickets->countTicketsRemaining(Type::ID_FEST) < $request->ctfest1){
+        //TYPE 1 FESTIVAL
+        return redirect('/orders/create')->with('error_message','Jumlah Tiket Festival Tidak Cukup');
+      }else if($this->tickets->countTicketsRemaining(Type::ID_VIPA) < $request->ctvipa2){
+        //TYPE 2 VIP A
+        // dd($this->tickets->countTicketsRemaining(Type::ID_VIPA).' '.$request->ctvipa2);
+        return redirect('/orders/create')->with('error_message','Jumlah Tiket VIP A Tidak Cukup');
+      }else if($this->tickets->countTicketsRemaining(Type::ID_VIPB) < $request->ctvipb3){
+        //TYPE 3 VIP B
+        return redirect('/orders/create')->with('error_message','Jumlah Tiket VIP B Tidak Cukup');
+      }else if($this->tickets->countTicketsRemaining(Type::ID_VVIP) < $request->ctvvip4){
+        //TYPE 4 VVIP
+        return redirect('/orders/create')->with('error_message','Jumlah Tiket VVIP Tidak Cukup');
+      }
 
-        //--get type price...
-        $atPrice = $order->type->price;
-        //dd($atPrice); //DEBUG
-        //--end of get type price
+      $order = new Order;
+      $order->fill($request->all());
+      $order->no_order = $this->orders->generateNoOrder();
+      $order->expired_date = date('Y-m-d H:i:s', time() + (3600 * 10)); //10 hours
+      $order->status = Order::STATUS_ORDERED;
+      $order->save();
 
-        //TODO: make safer saving technique with transaction
-        //set to ticket
-        $tickets = Ticket::where('type_id', $type->id)
+      $sumPrice = 0;
+      $quantity = 0;
+
+      if($request->ctfest1 > 0){
+        $tickets = Ticket::where('type_id', Type::ID_FEST)
                         ->where('order_date', NULL)
-                        ->limit($order->quantity)
+                        ->limit($request->ctfest1)
                         ->get();
-
-        foreach($tickets as $ticket){
-            $ticket->order()->associate($order);
-            $ticket->order_date = date('Y-m-d H:i:s');
-            $ticket->save();
+        foreach ($tickets as $ticket ) {
+          $ticket->order()->associate($order);
+          $ticket->order_date = date('Y-m-d H:i:s');
+          $ticket->save();
+          $sumPrice += $ticket->type->price;
+          $quantity++;
         }
+      }
 
-        Mail::send('emails.order', ['order' => $order , 'atPrice' => $atPrice], function($m) use ($order){
-            $m->from('no-reply@fivelivemagnificent.com', 'Five Live Magnificent 2016');
-            $m->to($order->email, $order->name);
-            $m->subject('Order Five Live Magnificent');            
-        });
+      if($request->ctvipa2 > 0){
+        $tickets = Ticket::where('type_id', Type::ID_VIPA)
+                        ->where('order_date', NULL)
+                        ->limit($request->ctvipa2)
+                        ->get();
+        foreach ($tickets as $ticket ) {
+          $ticket->order()->associate($order);
+          $ticket->order_date = date('Y-m-d H:i:s');
+          $ticket->save();
+          $sumPrice += $ticket->type->price;
+          $quantity++;
+        }
+      }
+
+      if($request->ctvipb3 > 0){
+        $tickets = Ticket::where('type_id', Type::ID_VIPB)
+                        ->where('order_date', NULL)
+                        ->limit($request->ctvipb3)
+                        ->get();
+        foreach ($tickets as $ticket ) {
+          $ticket->order()->associate($order);
+          $ticket->order_date = date('Y-m-d H:i:s');
+          $ticket->save();
+          $sumPrice += $ticket->type->price;
+          $quantity++;
+        }
+      }
+
+      if($request->ctvvip4 > 0){
+        $tickets = Ticket::where('type_id', Type::ID_VVIP)
+                        ->where('order_date', NULL)
+                        ->limit($request->ctvvip4)
+                        ->get();
+        foreach ($tickets as $ticket) {
+          $ticket->order()->associate($order);
+          $ticket->order_date = date('Y-m-d H:i:s');
+          $ticket->save();
+          $sumPrice += $ticket->type->price;
+          $quantity++;
+        }
+      }
+
+      $order->total_price = $sumPrice;
+      $order->quantity = $quantity;
+      $order->save();
+
+      $tickets = $order->tickets;
+      Mail::send('emails.order', ['order' => $order , 'tickets' => $tickets], function($m) use ($order){
+          $m->from('no-reply@fivelivemagnificent.com', 'Five Live Magnificent 2016');
+          $m->to($order->email, $order->name);
+          $m->subject('Order Five Live Magnificent');
+      });
 
         return view('frontend.register_success', [
             'email' => $order->email,

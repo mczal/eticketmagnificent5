@@ -38,17 +38,6 @@ background-size: cover;")
 					<input type="email" class="form-control" name="email" id="email" style="margin-bottom: 20px;" value="{{ old('email') }}">
 				</div>
 			</div>
-			<div class="form-group{{ $errors->has('id_no') ? ' has-error' : '' }}">
-				<div class="col-sm-12">
-					<label for="id_no">No. ID (KTP, KTM, SIM):
-					@if ($errors->has('id_no'))
-			            <span class="help-block">
-			                <strong>{{ $errors->first('id_no') }}</strong>
-			            </span>
-			        @endif</label>
-					<input type="text" class="form-control" name="id_no" id="id_no" style="margin-bottom: 20px;" value="{{ old('id_no') }}">
-				</div>
-			</div>
 			<div class="form-group{{ $errors->has('handphone') ? ' has-error' : '' }}">
 				<div class="col-sm-12">
 					<label for="handphone">Handphone:
@@ -60,28 +49,81 @@ background-size: cover;")
 					<input class="form-control" id="handphone" style="margin-bottom: 20px;" name="handphone" value="{{ old('handphone') }}">
 				</div>
 			</div>
-			<div class="form-group{{ $errors->has('quantity') ? ' has-error' : '' }}">
-				<div class="col-sm-12">
-					<label for="quantity">Number of tickets:</label>
-					<select class="form-control" id="quantity" style="margin-bottom: 20px;" name="quantity">
-						<option value="1"{{ old('quantity') == 1 ? ' selected' : '' }}>1</option>
-						<option value="2"{{ old('quantity') == 2 ? ' selected' : '' }}>2</option>
-						<option value="3"{{ old('quantity') == 1 ? ' selected' : '' }}>3</option>
-					</select>
-				</div>
+
+			<!-- TICKET TYPE -->
+			<div class="form-group{{ $errors->has('ctfest1') ? ' has-error' : '' }}">
+			    <label for="order-ctfest1" class="col-sm-12 col-md-12 col-lg-12 control-label">Ticket Type</label>
+			    <div class="col-sm-12 col-md-12" style="margin-top:25px;">
+
+			      <label class="col-sm-12 control-label">FESTIVAL</label>
+			      @if ($errors->has('ctfest1'))
+			          <span class="help-block">
+			              <strong>{{ $errors->first('ctfest1') }}</strong>
+			          </span>
+			      @endif
+			      <select style="color:black;" type="number" name="ctfest1" id="order-ctfest1" class="col-sm-4 form-control">
+							<option value="0" style="color:black;">0</option>
+							<option value="1" style="color:black;">1</option>
+							<option value="2" style="color:black;">2</option>
+							<option value="3" style="color:black;">3</option>
+							<option value="4" style="color:black;">4</option>
+						</select>
+						<label for="tiket sisa" class="col-sm-8" style="padding-bottom: 20px; padding-top: 10px;">Number of tickets remaining:  </label><hr width="80%">
+						<label class="col-sm-12 control-label">VIP A</label>
+			      @if ($errors->has('ctvipa2'))
+			          <span class="help-block">
+			              <strong>{{ $errors->first('ctvipa2') }}</strong>
+			          </span>
+			      @endif
+			      <select style="color:black;" type="number" name="ctvipa2" id="order-ctvipa2" class="col-sm-4 form-control">
+							<option value="0" style="color:black;">0</option>
+							<option value="1" style="color:black;">1</option>
+							<option value="2" style="color:black;">2</option>
+							<option value="3" style="color:black;">3</option>
+							<option value="4" style="color:black;">4</option>
+						</select>
+						<label for="tiket sisa" class="col-sm-8" style="padding-bottom: 20px; padding-top: 10px;">Number of tickets remaining:  </label><hr width="80%">
+			      <label class="col-sm-12 control-label">VIP B</label>
+			      @if ($errors->has('ctvipb3'))
+			          <span class="help-block">
+			              <strong>{{ $errors->first('ctvipb3') }}</strong>
+			          </span>
+			      @endif
+			      <select style="color:black;" type="number" name="ctvipb3" id="order-ctvipb3" class="col-sm-4 form-control">
+							<option value="0" style="color:black;">0</option>
+							<option value="1" style="color:black;">1</option>
+							<option value="2" style="color:black;">2</option>
+							<option value="3" style="color:black;">3</option>
+							<option value="4" style="color:black;">4</option>
+						</select>
+						<label for="tiket sisa" class="col-sm-8" style="padding-bottom: 20px; padding-top: 10px;">Number of tickets remaining:  </label><hr width="80%">
+			      <label class="col-sm-12 control-label">VVIP</label>
+			      @if ($errors->has('ctvvip4'))
+			          <span class="help-block">
+			              <strong>{{ $errors->first('ctvvip4') }}</strong>
+			          </span>
+			      @endif
+			      <select style="color:black;" type="number" name="ctvvip4" id="order-ctvvip4" class="col-sm-4 form-control">
+							<option value="0" style="color:black;">0</option>
+							<option value="1" style="color:black;">1</option>
+							<option value="2" style="color:black;">2</option>
+							<option value="3" style="color:black;">3</option>
+							<option value="4" style="color:black;">4</option>
+						</select>
+						<label for="tiket sisa" class="col-sm-8" style="padding-bottom: 20px; padding-top: 10px;">Number of tickets remaining:  </label>
+			    </div>
 			</div>
-			<p align="center">
-				<div class="col-sm-12">
-					<label for="tiket sisa" >Number of tickets remaining:  </label>
-					<label id="first" for="sisa">{{ $remaining_tickets }} (@Rp.{{number_format($price)}})</label>
-				</div>
-			</p>
+
 			<div class="col-sm-12">
 				<input type="hidden" value="{{ env('ACTIVE_TICKET_TYPE') }}" name="type_id">
 				<button id="second" style="font-size:11pt;" class="btn btn-lg btn-primary pull-right" type="submit" role="button">Submit</button>
 			</div>
 		</form>
 	</div>
+</div>
+
+<div class="img-seatplan">
+	<img src="{{ asset('/assets/images/seat-plan-WEB.jpg') }}" alt="" />
 </div>
 
 @endsection
