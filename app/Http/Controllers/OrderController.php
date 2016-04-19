@@ -129,17 +129,21 @@ class OrderController extends Controller
         }
 
         //this is validate count ticket left section with countordered
-        if($this->tickets->countTicketsRemaining(Type::ID_FEST) < $request->ctfest1){
+        $countTicketsFest = $this->tickets->countTicketsRemaining(Type::ID_FEST);
+        $countTicketsVipA = $this->tickets->countTicketsRemaining(Type::ID_VIPA);
+        $countTicketsVipB = $this->tickets->countTicketsRemaining(Type::ID_VIPB);
+        $countTicketsVvip = $this->tickets->countTicketsRemaining(Type::ID_VVIP);
+        if($countTicketsFest < $request->ctfest1){
           //TYPE 1 FESTIVAL
           return redirect('/orders/create')->with('error_message','Jumlah Tiket Festival Tidak Cukup');
-        }else if($this->tickets->countTicketsRemaining(Type::ID_VIPA) < $request->ctvipa2){
+        }else if($countTicketsVipA < $request->ctvipa2){
           //TYPE 2 VIP A
           // dd($this->tickets->countTicketsRemaining(Type::ID_VIPA).' '.$request->ctvipa2);
           return redirect('/orders/create')->with('error_message','Jumlah Tiket VIP A Tidak Cukup');
-        }else if($this->tickets->countTicketsRemaining(Type::ID_VIPB) < $request->ctvipb3){
+        }else if($countTicketsVipB < $request->ctvipb3){
           //TYPE 3 VIP B
           return redirect('/orders/create')->with('error_message','Jumlah Tiket VIP B Tidak Cukup');
-        }else if($this->tickets->countTicketsRemaining(Type::ID_VVIP) < $request->ctvvip4){
+        }else if($countTicketsVvip < $request->ctvvip4){
           //TYPE 4 VVIP
           return redirect('/orders/create')->with('error_message','Jumlah Tiket VVIP Tidak Cukup');
         }

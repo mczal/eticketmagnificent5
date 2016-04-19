@@ -43,7 +43,6 @@
 <!-- TICKET TYPE -->
 <div class="form-group{{ $errors->has('ctfest1') ? ' has-error' : '' }}">
     <label for="order-ctfest1" class="col-sm-2 control-label">Ticket Type</label>
-<br>
     <div class="col-sm-6">
 
       <label class="col-sm-2 control-label">FESTIVAL</label>

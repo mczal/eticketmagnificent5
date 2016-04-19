@@ -22,7 +22,7 @@ body {
     <span style="position: absolute; right: 220px; top: 222px;">{{ $ticket->order ? $ticket->order->handphone : ' - ' }}</span> -->
 <!-- <b style="position: absolute; right: 100px; top: 255px; font-size:13px; z-index:3;">{{ $ticket->unique_code }}</b> -->
 <img src="{{ asset('/qrcodes/' . $ticket->generateBarcode() . '.png') }}" alt="Barcode here" style="position: absolute; right: 100px; top: 194.95px; width: 170px ; height:160px; z-index:0;"/>
-<span style="position: absolute; left: 564px; top: 343.68px; font-size:15px; font-weight:bold; z-index:3; ">{{ $ticket->order ? $ticket->unique_code : '' }}</span>
+<span style="position: absolute; left: 564px; top: 343.68px; font-size:15px; font-weight:bold; z-index:3; ">{{  $ticket->unique_code }}</span>
 
 <span style="position: absolute; right: 10px; top: 1060px; font-size:12.5px; ">{{ $ticket->type ? $ticket->type->name : '' }}</span>
 <span style="position: absolute; right: 10px; top: 1078px; font-size:12.5px; ">{{ $ticket->order ? $ticket->unique_code : '' }}</span>

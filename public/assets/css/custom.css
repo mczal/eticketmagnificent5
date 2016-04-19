@@ -108,3 +108,8 @@ responsiveabsolutecenter {
     z-index: 10;
     padding-top: 60px;
   }
+
+  .img-seatplan{
+    text-align: center;
+    margin-top: 50px;
+  }

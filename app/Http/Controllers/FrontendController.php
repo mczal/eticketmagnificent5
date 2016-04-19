@@ -10,6 +10,7 @@ use App\Http\Controllers\Controller;
 use App\Order;
 use App\Confirmation;
 use App\Ticket;
+use App\Type;
 use App\Repositories\OrderRepositories;
 use App\Repositories\TypeRepositories;
 use App\Repositories\TicketRepositories;
@@ -40,11 +41,32 @@ class FrontendController extends Controller
     }
 
     public function buy(){
-        $remaining_tickets = $this->tickets->countTicketsRemaining(env('ACTIVE_TICKET_TYPE'));
-        $price = $this->types->findById(env('ACTIVE_TICKET_TYPE'))->price;
+        $remainingTicketsFest = $this->tickets->countTicketsRemaining(Type::ID_FEST);
+        $remainingTicketsVipA = $this->tickets->countTicketsRemaining(Type::ID_VIPA);
+        $remainingTicketsVipB = $this->tickets->countTicketsRemaining(Type::ID_VIPB);
+        $remainingTicketsVvip = $this->tickets->countTicketsRemaining(Type::ID_VVIP);
+        $countTicketsFest = $this->tickets->countTicketsRemaining(Type::ID_FEST);
+        $countTicketsVipA = $this->tickets->countTicketsRemaining(Type::ID_VIPA);
+        $countTicketsVipB = $this->tickets->countTicketsRemaining(Type::ID_VIPB);
+        $countTicketsVvip = $this->tickets->countTicketsRemaining(Type::ID_VVIP);
+        $priceFest = $this->types->findById(Type::ID_FEST)->price;
+        $priceVipA = $this->types->findById(Type::ID_VIPA)->price;
+        $priceVipB = $this->types->findById(Type::ID_VIPB)->price;
+        $priceVvip = $this->types->findById(Type::ID_VVIP)->price;
+
         return view('frontend.register', [
-            'remaining_tickets' => $remaining_tickets,
-            'price' => $price,
+            'countTicketsFest' => $countTicketsFest,
+            'countTicketsVipA' => $countTicketsVipA,
+            'countTicketsVipB' => $countTicketsVipB,
+            'countTicketsVvip' => $countTicketsVvip,
+            'remainingTicketsFest' => $remainingTicketsFest,
+            'remainingTicketsVipA' => $remainingTicketsVipA,
+            'remainingTicketsVipB' => $remainingTicketsVipB,
+            'remainingTicketsVvip' => $remainingTicketsVvip,
+            'priceFest' => $priceFest,
+            'priceVipA' => $priceVipA,
+            'priceVipB' => $priceVipB,
+            'priceVvip' => $priceVvip,
         ]);
     }
 
@@ -67,23 +89,27 @@ class FrontendController extends Controller
       $sumAll = (1*$request->ctfest1) + (1*$request->ctvipa2) + (1*$request->ctvipb3) + (1*$request->ctvvip4);
       //dd($sumAll.' '.$request->ctfest1);
       if($sumAll <= 0 ){
-        return redirect('/orders/create')->with('error_message','Tidak ada tiket yang ingin dipesan');
+        return redirect('/buy')->with('error_message','Tidak ada tiket yang ingin dipesan');
       }
 
       //this is validate count ticket left section with countordered
-      if($this->tickets->countTicketsRemaining(Type::ID_FEST) < $request->ctfest1){
+      $countTicketsFest = $this->tickets->countTicketsRemaining(Type::ID_FEST);
+      $countTicketsVipA = $this->tickets->countTicketsRemaining(Type::ID_VIPA);
+      $countTicketsVipB = $this->tickets->countTicketsRemaining(Type::ID_VIPB);
+      $countTicketsVvip = $this->tickets->countTicketsRemaining(Type::ID_VVIP);
+      if($countTicketsFest < $request->ctfest1){
         //TYPE 1 FESTIVAL
-        return redirect('/orders/create')->with('error_message','Jumlah Tiket Festival Tidak Cukup');
-      }else if($this->tickets->countTicketsRemaining(Type::ID_VIPA) < $request->ctvipa2){
+        return redirect('/buy')->with('error_message','Jumlah Tiket Festival Tidak Cukup');
+      }else if($countTicketsVipA < $request->ctvipa2){
         //TYPE 2 VIP A
         // dd($this->tickets->countTicketsRemaining(Type::ID_VIPA).' '.$request->ctvipa2);
-        return redirect('/orders/create')->with('error_message','Jumlah Tiket VIP A Tidak Cukup');
-      }else if($this->tickets->countTicketsRemaining(Type::ID_VIPB) < $request->ctvipb3){
+        return redirect('/buy')->with('error_message','Jumlah Tiket VIP A Tidak Cukup');
+      }else if($countTicketsVipB < $request->ctvipb3){
         //TYPE 3 VIP B
-        return redirect('/orders/create')->with('error_message','Jumlah Tiket VIP B Tidak Cukup');
-      }else if($this->tickets->countTicketsRemaining(Type::ID_VVIP) < $request->ctvvip4){
+        return redirect('/buy')->with('error_message','Jumlah Tiket VIP B Tidak Cukup');
+      }else if($countTicketsVvip < $request->ctvvip4){
         //TYPE 4 VVIP
-        return redirect('/orders/create')->with('error_message','Jumlah Tiket VVIP Tidak Cukup');
+        return redirect('/buy')->with('error_message','Jumlah Tiket VVIP Tidak Cukup');
       }
 
       $order = new Order;
