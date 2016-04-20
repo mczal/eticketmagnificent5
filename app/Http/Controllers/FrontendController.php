@@ -82,7 +82,7 @@ class FrontendController extends Controller
           'ctvipb3' => 'required|integer|min:0|max:4',
           'ctvvip4' => 'required|integer|min:0|max:4',
           'name' => 'required',
-          'email' => 'required|unique:orders|email',
+          'email' => 'required|email',
           'handphone' => 'required',
       ]);
 

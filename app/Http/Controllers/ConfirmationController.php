@@ -168,6 +168,7 @@ class ConfirmationController extends Controller
         foreach($order->tickets as $ticket){
           $ticket->order()->dissociate();
           $ticket->order_date = null;
+          $ticket->active_date = null;
           $ticket->save();
         }
         //here

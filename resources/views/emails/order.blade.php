@@ -27,7 +27,7 @@ Account Name : 1391951034 <br>
 Account Holder : Yayan Ardiansyah <br>
  <br>
 Setelah melakukan pembayaran klik URL berikut untuk konfirmasi :<br>
-<a href="http://www.parahyanganfair.com/confirmation">CONFIRMATION PAYMENT PAGE</a><br>
+<a href="http://www.fivelivemagnificent.com/confirmation">CONFIRMATION PAYMENT PAGE</a><br>
 <br>
 <strong>*Jika anda telah melakukan pembayaran namun belum melakuka konfirmasi,
    pemesanan dianggap <font color="red">BATAL</font> </strong> <br>
@@ -70,7 +70,7 @@ Account Name : 1391951034 <br>
 Account Holder : Yayan Ardiansyah <br>
  <br>
 After the payment had been made, please follow the link below to confirm your payment:<br>
-<a href="#">CONFIRMATION PAYMENT PAGE</a><br>
+<a href="http://www.fivelivemagnificent.com/confirmation">CONFIRMATION PAYMENT PAGE</a><br>
 <br>
 <strong>*If your payment had been made but did not confirm, the purchase will be <font color="red">CANCELED</font> </strong> <br>
 <br>
