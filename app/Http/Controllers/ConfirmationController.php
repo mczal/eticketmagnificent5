@@ -190,7 +190,7 @@ class ConfirmationController extends Controller
    public function validateOrder(Request $request){
      $confirmation = Confirmation::where(['id' => $request->id])->first();
      $order = $confirmation->order;
-     $order->status = \App\Order::STATUS_PAID;
+     $order->status = Order::STATUS_PAID;
      $order->save();
      //dd($order);
      foreach($confirmation->order->tickets as $ticket){

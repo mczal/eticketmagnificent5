@@ -74,16 +74,6 @@
                 </div>
             </div>
 
-            <!-- Type Total -->
-            <div class="row">
-                <div class="form-group">
-                    <label class="col-sm-2 control-label">Total Ticket</label>
-                    <div class="col-sm-6">
-                        {{ $total }}
-                    </div>
-                </div>
-            </div>
-
             <!-- Ordered Tickets Count -->
             <div class="row">
                 <div class="form-group">

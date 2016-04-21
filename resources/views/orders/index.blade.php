@@ -6,7 +6,7 @@
 
 @section('content')
     <p>
-        <!-- <a href="{{ url('/orders/create-offline') }}" class="btn btn-primary"><i class="fa fa-plus"></i> Create new offline ticket</a> -->
+        <a href="{{ url('/orders/create-offline') }}" class="btn btn-primary"><i class="fa fa-plus"></i> Create new offline ticket</a>
     </p>
     <div class="box box-solid">
         <div class="box-body">

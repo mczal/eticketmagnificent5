@@ -19,97 +19,134 @@
                 @include('commons.success')
 
                 <!-- beginning of my form TODO: -->
-                <!-- TICKET CODE -->
-                <div class="form-group{{ $errors->has('unique_code') ? ' has-error' : '' }}">
-                    <label for="unique-code" class="col-sm-2 control-label">Ticket Code</label>
-
-                    <div class="col-sm-6">
-                        <input type="text" class="form-control" name="unique_code" id="unique-code"/>
-                        @if ($errors->has('unique_code'))
-                            <span class="help-block">
-                                <strong>{{ $errors->first('unique_code') }}</strong>
-                            </span>
-                        @endif
-                    </div>
-                </div>
-
-                <!-- Name -->
                 <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
-                    <label for="order-name" class="col-sm-2 control-label">Name</label>
+          				<div class="col-sm-12">
+          					<label for="name">Name:(exactly as in Bank):
+          					@if ($errors->has('name'))
+          			            <span class="help-block">
+          			                <strong>{{ $errors->first('name') }}</strong>
+          			            </span>
+          			        @endif</label>
+          					<input type="text" class="form-control" name="name" id="name" style="margin-bottom: 20px;" value="{{ old('name') }}">
+          				</div>
+          			</div>
+          			<div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
+          				<div class="col-sm-12">
+          					<label for="email">Email:
+          					@if ($errors->has('email'))
+          			            <span class="help-block">
+          			                <strong>{{ $errors->first('email') }}</strong>
+          			            </span>
+          			        @endif</label>
+          					<input type="email" class="form-control" name="email" id="email" style="margin-bottom: 20px;" value="{{ old('email') }}">
+          				</div>
+          			</div>
+          			<div class="form-group{{ $errors->has('handphone') ? ' has-error' : '' }}">
+          				<div class="col-sm-12">
+          					<label for="handphone">Handphone:
+          					@if ($errors->has('handphone'))
+          			            <span class="help-block">
+          			                <strong>{{ $errors->first('handphone') }}</strong>
+          			            </span>
+          			        @endif</label>
+          					<input class="form-control" id="handphone" style="margin-bottom: 20px;" name="handphone" value="{{ old('handphone') }}">
+          				</div>
+          			</div>
 
-                    <div class="col-sm-6">
-                        <input type="text" name="name" id="order-name" class="form-control" value="{{ isset($order->name) ? $order->name : old('name') }}">
-                        @if ($errors->has('name'))
-                            <span class="help-block">
-                                <strong>{{ $errors->first('name') }}</strong>
-                            </span>
-                        @endif
+          			<!-- TICKET TYPE -->
+          			<div class="form-group{{ $errors->has('ctfest1') ? ' has-error' : '' }}">
+          			    <label for="order-ctfest1" class="col-sm-12 col-md-12 col-lg-12 control-label">Ticket Type</label>
+          			    <div class="col-sm-12 col-md-12" style="margin-top:25px;">
+
+          			      <label class="col-sm-12 control-label">FESTIVAL &nbsp; &nbsp; <span style="font-weight:normal;">@Rp.{{number_format($priceFest)}}</span></label>
+          			      @if ($errors->has('ctfest1'))
+          			          <span class="help-block">
+          			              <strong>{{ $errors->first('ctfest1') }}</strong>
+          			          </span>
+          			      @endif
+          			      <select style="color:black;" type="number" name="ctfest1" id="order-ctfest1" class="col-sm-4 form-control">
+          							<option value="0" style="color:black;">0</option>
+          							<option value="1" style="color:black;">1</option>
+          							<option value="2" style="color:black;">2</option>
+          							<option value="3" style="color:black;">3</option>
+          							<option value="4" style="color:black;">4</option>
+          						</select><br>
+
+          			      <label style="padding-top:10px;" class="col-sm-12 control-label">VIP B &nbsp; &nbsp; <span style="font-weight:normal;">@Rp.{{number_format($priceVipB)}}</span></label>
+          			      @if ($errors->has('ctvipb3'))
+          			          <span class="help-block">
+          			              <strong>{{ $errors->first('ctvipb3') }}</strong>
+          			          </span>
+          			      @endif
+          			      <select style="color:black;" type="number" name="ctvipb3" id="order-ctvipb3" class="col-sm-4 form-control">
+          							<option value="0" style="color:black;">0</option>
+          							<option value="1" style="color:black;">1</option>
+          							<option value="2" style="color:black;">2</option>
+          							<option value="3" style="color:black;">3</option>
+          							<option value="4" style="color:black;">4</option>
+          						</select><br>
+
+          						<label style="padding-top:10px;" class="col-sm-12 control-label">VIP A &nbsp; &nbsp; <span style="font-weight:normal;">@Rp.{{number_format($priceVipA)}}</span></label>
+          			      @if ($errors->has('ctvipa2'))
+          			          <span class="help-block">
+          			              <strong>{{ $errors->first('ctvipa2') }}</strong>
+          			          </span>
+          			      @endif
+          			      <select style="color:black;" type="number" name="ctvipa2" id="order-ctvipa2" class="col-sm-4 form-control">
+          							<option value="0" style="color:black;">0</option>
+          							<option value="1" style="color:black;">1</option>
+          							<option value="2" style="color:black;">2</option>
+          							<option value="3" style="color:black;">3</option>
+          							<option value="4" style="color:black;">4</option>
+          						</select><br>
+
+          						<label style="padding-top:10px;" class="col-sm-12 control-label">VVIP &nbsp; &nbsp; <span style="font-weight:normal;"><i>-SOLD OUT-</i></span></label>
+          			      @if ($errors->has('ctvvip4'))
+          			          <span class="help-block">
+          			              <strong>{{ $errors->first('ctvvip4') }}</strong>
+          			          </span>
+          			      @endif
+          						<input type="hidden" name="ctvvip4" value="0">
+          			    </div>
+          			</div>
+                <div class="form-group{{ $errors->has('nama_bank') ? ' has-error' : '' }}">
+                    <div class="col-sm-12">
+                        <label for="nama_bank">Bank:
+    					@if ($errors->has('nama_bank'))
+    			            <span class="help-block">
+    			                <strong>{{ $errors->first('nama_bank') }}</strong>
+    			            </span>
+    			        @endif</label>
+                        <input type="text" class="form-control" id="nama_bank" name="nama_bank" value="{{ old('nama_bank') }}">
+                    </div>
+                </div>
+                <div class="form-group{{ $errors->has('no_rekening') ? ' has-error' : '' }}">
+                    <div class="col-sm-12">
+                        <label for="no_rekening">Bank Account Number:
+    					@if ($errors->has('no_rekening'))
+    			            <span class="help-block">
+    			                <strong>{{ $errors->first('no_rekening') }}</strong>
+    			            </span>
+    			        @endif</label>
+                        <input type="text" class="form-control" id="no_rekening" name="no_rekening" value="{{ old('no_rekening') }}">
+                    </div>
+                </div>
+                <div class="form-group{{ $errors->has('total_transfer') ? ' has-error' : '' }}">
+                    <div class="col-sm-12">
+                        <label for="total_transfer">Transfer Amount:
+    					@if ($errors->has('total_transfer'))
+    			            <span class="help-block">
+    			                <strong>{{ $errors->first('total_transfer') }}</strong>
+    			            </span>
+    			        @endif</label>
+                        <input type="number" class="form-control" id="total_transfer" name="total_transfer" value="{{ old('total_transfer') }}">
                     </div>
                 </div>
 
-                <!-- Address -->
-                <div class="form-group{{ $errors->has('address') ? ' has-error' : '' }}">
-                    <label for="order-address" class="col-sm-2 control-label">Address</label>
-
-                    <div class="col-sm-6">
-                        <textarea name="address" id="order-address" class="form-control">{{ isset($order->address) ? $order->address : old('address') }}</textarea>
-                        @if ($errors->has('address'))
-                            <span class="help-block">
-                                <strong>{{ $errors->first('address') }}</strong>
-                            </span>
-                        @endif
-                    </div>
-                </div>
-
-                <!-- Email -->
-                <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                    <label for="order-email" class="col-sm-2 control-label">Email</label>
-
-                    <div class="col-sm-6">
-                        <input type="email" name="email" id="order-email" class="form-control" value="{{ isset($order->email) ? $order->email : old('email') }}">
-                        @if ($errors->has('email'))
-                            <span class="help-block">
-                                <strong>{{ $errors->first('email') }}</strong>
-                            </span>
-                        @endif
-                    </div>
-                </div>
-
-                <!-- Handphone -->
-                <div class="form-group{{ $errors->has('handphone') ? ' has-error' : '' }}">
-                    <label for="order-handphone" class="col-sm-2 control-label">Handphone</label>
-
-                    <div class="col-sm-6">
-                        <input type="text" name="handphone" id="order-handphone" class="form-control" value="{{ isset($order->handphone) ? $order->handphone : old('handphone') }}">
-                        @if ($errors->has('handphone'))
-                            <span class="help-block">
-                                <strong>{{ $errors->first('handphone') }}</strong>
-                            </span>
-                        @endif
-                    </div>
-                </div>
-
-                <!-- ID Number -->
-                <div class="form-group{{ $errors->has('id_no') ? ' has-error' : '' }}">
-                    <label for="order-id_no" class="col-sm-2 control-label">ID Number</label>
-
-                    <div class="col-sm-6">
-                        <input type="text" name="id_no" id="order-id_no" class="form-control" value="{{ isset($order->id_no) ? $order->id_no : old('id_no') }}">
-                        @if ($errors->has('id_no'))
-                            <span class="help-block">
-                                <strong>{{ $errors->first('id_no') }}</strong>
-                            </span>
-                        @endif
-                    </div>
-                </div>
-
+          			<div class="col-sm-12">
+          				<button id="second" style="font-size:11pt;" class="btn btn-lg btn-primary pull-right" type="submit" role="button">Submit</button>
+          			</div>
                 <!-- end of myform -->
-
-                <div class="form-group">
-                    <div class="col-sm-3 col-sm-offset-2">
-                        <button type="submit" name="button" class="btn btn-success"><i class="fa fa-save"></i> Save</button>
-                    </div>
-                </div>
             </form>
         </div><!-- /.box-body -->
     </div>

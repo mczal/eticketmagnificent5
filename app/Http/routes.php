@@ -46,7 +46,7 @@ Route::group(['middleware' => ['web']], function () {
     //require auth
     Route::post('orders/resend-mail-online-order','OrderController@resendMailOnlineOrder');
     Route::get('orders/cancel', 'OrderController@cancel');
-    Route::post('orders/store-offline','OrderController@storeOffline');
+    Route::post('orders/store-offline','OrderController@storeOfflineOrder');
     Route::get('orders/create-offline','OrderController@createOffline');
     Route::resource('orders', 'OrderController');
 

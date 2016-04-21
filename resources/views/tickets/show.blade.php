@@ -21,15 +21,14 @@
           </div>
 
           <!-- SIGNATURE -->
-          <div class="row">
+          <!-- <div class="row">
               <div class="form-group">
                   <label for="order-signature" class="col-sm-2 control-label">Signature</label>
 
                   <div class="col-sm-6">
-                      {{ strtoupper($ticket->generateBarcode()) }}
                   </div>
               </div>
-          </div>
+          </div> -->
 
           <!-- Ticket order id -->
           <div class="row">
